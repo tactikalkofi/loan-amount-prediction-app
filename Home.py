@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-import base64
 import pandas as pd
 import streamlit as st
 
@@ -8,11 +7,13 @@ import streamlit as st
 st.set_page_config(page_title="Loan Default Prediction", layout="wide", page_icon="💸")
 
 # ===================== FILE PATHS =====================
-IMAGE_PATH = Path(__file__).parent / "loan.jpg"
-DATA_PATH = Path("C:/Users/user/PycharmProjects/Group2SML/data/loan_default.csv")
+BASE = Path(__file__).parent
+IMAGE_PATH = BASE / "loan.jpg"
+DATA_PATH = BASE / "data" / "loan_default.csv"
+
 
 # ===================== UTILITIES =====================
-def get_base64_image(image_path: Path) -> str:
+def get_base64_image(image_path):
     with open(image_path, "rb") as img_file:
         encoded = base64.b64encode(img_file.read()).decode()
     return f"data:image/jpg;base64,{encoded}"
